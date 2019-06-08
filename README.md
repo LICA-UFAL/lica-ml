@@ -2,11 +2,11 @@
 	Algorithms implementations by LICA
 
 # Languages supported: 
- [X] Python
- [] Java 
- [] Elixir 
- [] Haskell 
- [] JavaScript 
+ - [X] Python
+ - [ ] Java 
+ - [ ] Elixir 
+ - [ ] Haskell 
+ - [ ] JavaScript 
 
 #Team 
  * Émerson Silva
