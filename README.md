@@ -1,5 +1,5 @@
 # Machine Learning - LICA
-	Algorithms implementations by LICA
+Algorithms implementations by LICA
 
 # Languages supported: 
  - [X] Python
@@ -8,7 +8,7 @@
  - [ ] Haskell 
  - [ ] JavaScript 
 
-#Team 
+# Team 
  * Émerson Silva
  * Francisco Neto 
  * Jadson Lúcio 
