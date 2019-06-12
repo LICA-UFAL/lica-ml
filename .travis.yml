@@ -1,0 +1,7 @@
+language: python
+python:
+  - "3.7"
+install:
+  - cd ./algorithms/python/ && pip install -r requirements.txt
+script:
+  - pytest
