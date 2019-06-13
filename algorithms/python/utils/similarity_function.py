@@ -8,7 +8,7 @@ def manhattan_dist(first_el, second_el):
 
 def cosine_dist(first_el, second_el):
 
-    def magnitude(arr):
+    def norm(arr):
         return np.sqrt(np.sum(arr ** 2))
 
-    return np.sum(first_el * second_el) / (magnitude(first_el) * magnitude(second_el))
+    return abs((np.sum(first_el * second_el)) / (norm(first_el) * norm(second_el)) - 1)

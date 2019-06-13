@@ -42,4 +42,22 @@ def test_manhattan_dist_should_raise_ValueError():
 
 
 
+def test_zero_cosine_dist():
+    first_ele = [1, 2, 3, 4]
+    second_ele = [1, 2, 3, 4]
+
+    assert cosine_dist(first_ele, second_ele) == 0
+
+def test_cosine_dist_should_return_3():
+    fist_ele = [1, 1, 1]
+    second_ele = [2, 3, 3]
+
+    assert  manhattan_dist(fist_ele, second_ele) == 5
+
+def test_cosine_dist_should_raise_ValueError():
+    first_ele = [1, 2, 3]
+    second_ele = [1, 2, 3, 4]
+
+    with pytest.raises(ValueError):
+        assert manhattan_dist(first_ele, second_ele)
 
