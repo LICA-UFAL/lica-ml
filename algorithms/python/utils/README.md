@@ -7,3 +7,6 @@ Mathematical formulas of functions implementations
 
 - Manhattan distance:
 	<div style="text-align:center"><img src="../../formulas/manhattan_dist.gif" /></div>
+
+- Cosine distance:
+	<div style="text-align:center"><img src="../../formulas/cosine_dist.gif" /></div>
