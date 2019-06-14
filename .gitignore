@@ -1,3 +1,6 @@
 # ignore JetBrains config folder
 **/.idea/
 .pytest_cache
+
+# ignore pyc files
+__pycache__/
