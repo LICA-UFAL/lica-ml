@@ -1,4 +1,6 @@
-# Machine Learning - LICA
+# Machine Learning - LICA 
+[![Build Status](https://travis-ci.org/LICA-UFAL/machine_learning_lica.svg?branch=master)](https://travis-ci.org/LICA-UFAL/machine_learning_lica)
+	
 	Algorithms implementations by LICA
 
 # Languages supported: 
