@@ -2,16 +2,18 @@ import numpy as np
 from functools import cmp_to_key
 from statistics import mode
 from utils.similarity_function import euclidian_dist
+from utils.standardization_function import standardization
 
 
 class KNNClassifier():
-    def __init__(self, n_neighbors, similarity_function = euclidian_dist):
+    def __init__(self, n_neighbors, weights=False, similarity_function=euclidian_dist):
         self.fitted = False
         self.n_neighbors = n_neighbors
         self.similarity_function = similarity_function
+        self.weights = weights
         self.data_x = []
         self.data_y = []
-    
+
     def fit(self, x, y):
         if len(x) < self.n_neighbors:
             raise Exception("Input size should by greater than n_neighbors")
@@ -28,13 +30,40 @@ class KNNClassifier():
         if x_array.shape != self.data_x.shape[1:]:
             raise Exception("sample {0} have different shape than train data".format(x))
 
-        data = [(element, label) for element, label in zip(self.data_x, self.data_y)]
-        data = sorted(data, key=cmp_to_key(self._compare(x)))
+        data = map(lambda element, label: (self.similarity_function(x, element) if self.weights else 1, label),
+                   self.data_x, self.data_y)
+        data = sorted(data, key=self._compare)
+        data = np.array(data)
+        data = data[:self.n_neighbors]
+        data[:,0] = standardization(data[:,0])
 
-        return mode(list(map(lambda a: a[1], data[-self.n_neighbors:])))
+        dict_labels = {}
+        for similarity, label in data:
+            ele = dict_labels.get(label, (0, 0))
+            dict_labels[label] = (ele[0] + similarity, ele[1] + 1)
+
+        data = list(map(lambda label, ele: (ele[0]/ele[1], ele[1], label), dict_labels.keys(), dict_labels.values()))
+        data = sorted(data, key=self._compare)
+
+        return data[0][2]
 
     def predict(self, x):
         return list(map(self.predict_sample, x))
 
-    def _compare(self, x):
-        return lambda a, b: self.similarity_function(x, a[0]) > self.similarity_function(x, b[0])
+    @staticmethod
+    def _compare(ele):
+        class K:
+            def __init__(self, item):
+                self.item = item
+
+            def __gt__(self, other):
+                if self.item[0] == other.item[0]:
+                    return self.item[1] < other.item[1]
+                else:
+                    return self.item[0] > other.item[0]
+
+        return K(ele)
+
+class KNNRegressor:
+    def __init__(self, n_neighbors, weights=True, similarity_function=euclidian_dist):
+        pass
