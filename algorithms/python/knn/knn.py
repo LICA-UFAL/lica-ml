@@ -5,7 +5,7 @@ from utils.similarity_function import euclidian_dist
 from utils.standardization_function import standardization
 
 
-class KNNClassifier():
+class KNN():
     def __init__(self, n_neighbors, weights=False, similarity_function=euclidian_dist):
         self.fitted = False
         self.n_neighbors = n_neighbors
@@ -13,7 +13,7 @@ class KNNClassifier():
         self.weights = weights
         self.data_x = []
         self.data_y = []
-
+    
     def fit(self, x, y):
         if len(x) < self.n_neighbors:
             raise Exception("Input size should by greater than n_neighbors")
@@ -23,33 +23,27 @@ class KNNClassifier():
         self.data_y = np.array(y)
         self.fitted = True
 
-    def predict_sample(self, x):
-        x_array = np.array(x)
+    def predict(self, x):
+        return list(map(self.predict_sample, x))
+
+    def predict_sample(self, x_sample):
+        raise Exception("base knn class can't predict sample")
+
+    def most_similar_elements(self, x_sample):
+        x_array = np.array(x_sample)
         if not self.fitted:
             raise ValueError("KNNClassifier not fitted")
         if x_array.shape != self.data_x.shape[1:]:
-            raise Exception("sample {0} have different shape than train data".format(x))
+            raise Exception("sample {0} have different shape than train data".format(x_sample))
 
-        data = map(lambda element, label: (self.similarity_function(x, element) if self.weights else 1, label),
+        data = map(lambda element, label: (self.similarity_function(x_sample, element) if self.weights else 1, label),
                    self.data_x, self.data_y)
         data = sorted(data, key=self._compare)
         data = np.array(data)
         data = data[:self.n_neighbors]
-        data[:,0] = standardization(data[:,0])
 
-        dict_labels = {}
-        for similarity, label in data:
-            ele = dict_labels.get(label, (0, 0))
-            dict_labels[label] = (ele[0] + similarity, ele[1] + 1)
-
-        data = list(map(lambda label, ele: (ele[0]/ele[1], ele[1], label), dict_labels.keys(), dict_labels.values()))
-        data = sorted(data, key=self._compare)
-
-        return data[0][2]
-
-    def predict(self, x):
-        return list(map(self.predict_sample, x))
-
+        return data
+    
     @staticmethod
     def _compare(ele):
         class K:
@@ -64,6 +58,32 @@ class KNNClassifier():
 
         return K(ele)
 
-class KNNRegressor:
+class KNNClassifier(KNN):
+    def __init__(self, n_neighbors, weights=False, similarity_function=euclidian_dist):
+        super().__init__(n_neighbors, weights, similarity_function)
+
+    def predict_sample(self, x_sample):
+        data = self.most_similar_elements(x_sample)
+        data[:,0] = standardization(data[:,0])
+
+        dict_labels = {}
+        for similarity, label in data:
+            ele = dict_labels.get(label, (0, 0))
+            dict_labels[label] = (ele[0] + similarity, ele[1] + 1)
+
+        data = list(map(lambda label, ele: (ele[0]/ele[1], ele[1], label), dict_labels.keys(), dict_labels.values()))
+        data = sorted(data, key=self._compare)
+
+        return data[0][2]
+
+class KNNRegressor(KNN):
     def __init__(self, n_neighbors, weights=True, similarity_function=euclidian_dist):
-        pass
+        super().__init__(n_neighbors, weights, similarity_function)
+    
+    def predict_sample(self, x_sample):
+        data = self.most_similar_elements(x_sample)
+        data = list(map(lambda a: (1/a[0] if a[0] !=0 else 1, a[1]), data))
+        numerator = sum(map(lambda a: a[0] * np.array(a[1]), data))
+        denominator = sum(map(lambda a: a[0], data))
+        return numerator/denominator
+
