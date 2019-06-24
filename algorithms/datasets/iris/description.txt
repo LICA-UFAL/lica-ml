@@ -1,0 +1,8 @@
+{"problem type": "classification",
+ "dataset name": "Iris Plants Database",
+ "data type" : "array",
+ "dataX feature(s) name": ["sepal length in cm", "sepal width in cm", "petal length in cm", "petal width in cm"],
+ "dataY feature(s) name": ["class of plant (Iris Setosa, Iris Versicolour, Iris Virginica) "],
+ "data info": ""
+}
+
