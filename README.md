@@ -8,7 +8,9 @@
  - [ ] Java 
  - [ ] Elixir 
  - [ ] Haskell 
- - [ ] JavaScript 
+ - [ ] JavaScript
+ - [ ] Julia
+ - [ ] Go
 
 #Team 
  * Émerson Silva
