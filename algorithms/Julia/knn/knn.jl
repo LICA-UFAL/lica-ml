@@ -4,10 +4,12 @@ module KNN
         similarity_function::Function
     end
 
+    get_class(row) = row[2]
+
     function predict_sample(classifier::KNNClassifier, sample::Array)
         return function _predict_sample(data::Array)
             data = sort(data, by = x -> classifier.similarity_function(x[1], sample))
-            classes = map(x -> x[2], data[end - classifier.n_neighbors: end])
+            classes = get_class.(data[end - classifier.n_neighbors: end])
             unique_classes = unique(classes)
             freqs = map(i -> (i, count(x -> x == i , classes)), unique_classes) |> Dict
             return argmax(freqs)
@@ -26,12 +28,6 @@ module KNN
         data = map((x, y) -> (x, y), eachrow(data_x), data_y)
         return predict_sample(classifier, sample)(data)
     end
-
-   # macro predict(classifier::KNNClassifier, data_x::Array, data_y::Array, sample::Array)
-   #     return quote
-   #         predict($(classifier), $(data_x), $(data_y), $(sample))
-   #     end
-   # end
 
     export KNNClassifier, predict
 end
