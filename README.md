@@ -9,7 +9,7 @@
  - [ ] Elixir 
  - [ ] Haskell 
  - [ ] JavaScript
- - [ ] Julia
+ - [X] Julia
  - [ ] Go
 
 #Team 
