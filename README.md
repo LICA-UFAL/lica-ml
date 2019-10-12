@@ -8,6 +8,7 @@
  - [ ] Java 
  - [ ] Elixir 
  - [ ] Haskell 
+ - [X] Clojure
  - [ ] JavaScript
  - [X] Julia
  - [ ] Go
