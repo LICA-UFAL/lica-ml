@@ -1,7 +1,7 @@
 # Machine Learning - LICA 
 [![Build Status](https://travis-ci.org/LICA-UFAL/machine_learning_lica.svg?branch=master)](https://travis-ci.org/LICA-UFAL/machine_learning_lica)
 
-#### Português :br:
+#### Português :brazil:
 ## Introdução
 Este repositório tem como objetivo reunir as implementações do algoritmos de IA e técnicas que utilizamos para automatizar alguns processos durante a fase de análise de dados. 
 
@@ -14,7 +14,7 @@ Sugerimos que olhe as issues abertas e escolha uma tarefa para trabalhar. Se voc
 
 **Nota**: Implementar os algoritmos que já estão prontos nas bibliotecas das diversas linguagens tem como único objetivo aprender, de uma maneira aprofundada, como cada algoritmo funciona. Dito isso, por mais que nesse repositório consigamos implementar algoritmos que funcionem muito bem, recomemdamos que você utilize as implementações existentes nas bibliotecas.
 
-#### English :en:
+#### English :gb:
 ## Intro
 This repository aims bring together AI algorithms implementations and techniques we use to makes it easy some data analysis tasks.
 
