@@ -3,6 +3,8 @@
 
 #### Português :brazil:
 ## Introdução
+O Laboratório de Inteligência Computacional Aplicada (LICA) está alocado no Núcleo de Ciências Exatas (NCEx) da Universidade Federal de Alagoas (UFAL) campus Arapiraca.
+
 Este repositório tem como objetivo reunir as implementações do algoritmos de IA e técnicas que utilizamos para automatizar alguns processos durante a fase de análise de dados. 
 
 Você pode implementar utilizando sua linguagem favorita! Nós listamos abaixo as linguagens que desejamos utilizar nas implementações e, se a sua linguagem favorita não estiver na lista, sinta-se à vontade para adicioná-la!
@@ -16,6 +18,8 @@ Sugerimos que olhe as issues abertas e escolha uma tarefa para trabalhar. Se voc
 
 #### English :gb:
 ## Intro
+The Applied Computational Intelligence Laboratory (LICA) is located at the Exact Sciences Nucleus (NCEx) of the Federal University of Alagoas (UFAL) Arapiraca campus.
+
 This repository aims bring together AI algorithms implementations and techniques we use to makes it easy some data analysis tasks.
 
 You can code using your favorite language! We list below the languages what we wish to use and if your favorite language is not in the list, fell free to add it!
